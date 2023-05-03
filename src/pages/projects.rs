@@ -1,32 +1,91 @@
-use yew::{ html, Html, function_component };
+use yew::{ html, Html, Component };
 use crate::{ components::{ footer::Footer, menu::Menu, widget::Widget, project::ProjectItem }, router::Route };
+use serde::{ Deserialize };
+use ron::from_str;
+use gloo_net::{http::Request, Error};
 
-#[function_component]
-pub fn Projects() -> Html {
-    let mut widgets = Vec::new();
-    let content = vec![
-        Product { name: "Skoki narciarskie 2020", link: "https://gameplanet.onet.pl/gry-online/sportowe/zimowe/skoki-narciarskie-2020/c19704m", image_url: "./images/skoki-narciarskie.jpg", description: "Gra przeglądarkowa bazująca na silniku Phaser 3 na potrzeby Onet.pl" },
-        Product { name: "Hamster and Hammer", link: "https://play.google.com/store/apps/details?id=pl.hamsterentertainment.hamsterandhammer", image_url: "./images/hamster-and-hammer.jpg", description: "Własny projekt polegający na stworzeniu gry na telefon z systemem android wykorzystując Cordova i Phaser 3" },
-        Product { name: "Praca dyplomowa", link: "https://github.com/Saurus42/One-of-Ten", image_url: "./images/praca-dyplomowa.jpg", description: "Praca dyplomowa wzorująca się na teleturnieju 10 z dziesięciu. Wszystko napisane w JavaScript korzystając z Node.js oraz Electron." },
-        Product { name: "Bot szachowy", link: "https://github.com/Saurus42/chessarbiter", image_url: "./images/bot-szachowy.jpg", description: "Własny projekt polegający na stworzeniu bot szachowego na platformę discord." },
-        Product { name: "Kalkulator do przelicznika walut", link: "https://github.com/Saurus42/bank-calculate", image_url: "./images/bank-calculate.jpg", description: "Prosta witryna napisana na potrzeby sprawdzenia moich umiejętności szybkiego uczenia się." },
-        Product { name: "Moduł ułatwiający obsługę ciasteczek", link: "https://github.com/Saurus42/cookie", image_url: "./images/cookie.jpg", description: "Moduł skryptowy i binarny do obsługi ciasteczek po stronie klienta w wygodny sposób." }
-    ];
-    for element in content {
-        widgets.push( html!{ <Widget><ProjectItem link={element.link.to_owned()} name={element.name.to_owned()} image_url={element.image_url.to_owned()} description={element.description.to_owned()} /></Widget> } )
-    }
-    html!{
-        <div class="container">
-            <Menu names={ vec![ "O mnie".to_owned(), "Moje projekty".to_owned() ] } urls={ vec![ Route::Home, Route::Projects ] } />
-            {widgets}
-            <Footer />
-        </div>
-    }
+enum ComponentLoadingStage {
+    Loading,
+    Success,
+    Error
 }
 
-struct Product<'a> {
-    pub name: &'a str,
-    pub image_url: &'a str,
-    pub description: &'a str,
-    pub link: &'a str
+pub struct Projects {
+    products: Vec<Product>,
+    loading_condition: ComponentLoadingStage
+}
+
+impl Component for Projects {
+    type Message = Result<String, Error>;
+
+    type Properties = ();
+
+    fn create(_ctx: &yew::Context<Self>) -> Self {
+        Self {
+            products: Vec::new(),
+            loading_condition: ComponentLoadingStage::Loading
+        }
+    }
+
+    fn view(&self, _ctx: &yew::Context<Self>) -> Html {
+        let widgets = match self.loading_condition {
+            ComponentLoadingStage::Loading => html! { <p>{"Loading assets."}</p> },
+            ComponentLoadingStage::Success => {
+                self.products.iter().map(|product| {
+                    html! { <ProjectItem link={product.link.to_owned()} name={product.name.to_owned()} image_url={product.image_url.to_owned()} description={product.description.to_owned()} /> }
+                }).collect::<Html>()
+            },
+            ComponentLoadingStage::Error => html! { <p>{ "There was an error loading the lesson plans!" }</p>}
+        };
+        html!{
+            <div class="container-sm">
+                <Menu names={ vec![ "O mnie".to_owned(), "Moje projekty".to_owned() ] } urls={ vec![ Route::Home, Route::Projects ] } />
+                <Widget>
+                    {widgets}
+                </Widget>
+                <Footer />
+            </div>
+        }
+    }
+
+    fn update(&mut self, _ctx: &yew::Context<Self>, msg: Self::Message) -> bool {
+        match msg {
+            Ok( products ) => {
+                self.products = from_str::<Vec<Product>>( &products ).unwrap().clone();
+                self.loading_condition = ComponentLoadingStage::Success;
+            },
+            Err( _ ) => {
+                self.loading_condition = ComponentLoadingStage::Error;
+            }
+        }
+        true
+    }
+
+    fn changed(&mut self, _ctx: &yew::Context<Self>, _old_props: &Self::Properties) -> bool {
+        true
+    }
+
+    fn rendered(&mut self, ctx: &yew::Context<Self>, first_render: bool) {
+        if first_render {
+            let link = ctx.link().clone();
+            wasm_bindgen_futures::spawn_local( async move {
+                let fetch_products = Request::get( "./assets/products.ron" ).send().await.unwrap().text().await;
+                link.send_message( fetch_products );
+            } );
+        }
+    }
+
+    fn prepare_state(&self) -> Option<String> {
+        None
+    }
+
+    fn destroy(&mut self, _ctx: &yew::Context<Self>) {}
+}
+
+#[derive(PartialEq, Deserialize, Clone)]
+struct Product {
+    pub name: String,
+    pub image_url: String,
+    pub description: String,
+    pub link: String
 }
