@@ -1,2 +1,4 @@
 import init from './wasm.js';
-init().catch( () => alert( 'Masz przestarzałą przeglądarkę. Proszę ją zaktualizować.' ) );
+init().then( result => {
+    result.run();
+} ).catch( () => alert( 'Masz przestarzałą przeglądarkę. Proszę ją zaktualizować.' ) );
