@@ -1,0 +1,63 @@
+@import "../static/node_modules/bootstrap/scss/bootstrap-grid.scss";
+
+.text-center {
+    text-align: center;
+}
+
+@mixin hover {
+    &:hover {
+        background-color: #474470;
+        color: #fff;
+        text-shadow: none;
+    }
+}
+
+.navigation {
+    & a {
+        text-decoration: none;
+        color: black;
+        @include hover();
+        padding: 0.5em;
+    }
+    background-color: #A19AFC;
+}
+
+body {
+    background-color: #9993F0;
+    margin: 0;
+}
+
+.content {
+    background-color: #8883D6;
+    text-shadow: 0 0 10px #fff;
+}
+
+.widget {
+    background-color: #8883D6;
+    text-shadow: 0 0 10px #fff;
+    & .project {
+        & > article { 
+            & > header {
+                & > img {
+                    box-sizing: border-box;
+                    width: 100%;
+                }
+            }
+        }
+        text-decoration: none;
+        color: black;
+        @include hover();
+    }
+}
+
+.footer {
+    & .element-widget {
+        color: #fff;
+        text-shadow: 0 0 3px black;
+        & a {
+            color: #fff;
+            text-decoration: none;
+        }
+    }
+    background-color: #706BB0;
+}
