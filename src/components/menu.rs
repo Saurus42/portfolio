@@ -17,8 +17,12 @@ pub fn Menu( props: &Props ) -> Html {
         items.push( html!{ <ItemMenu url_link={ urls[index].clone() } name_link={ names[index].clone() } /> } );
     }
     html!{
-        <nav class="navigation">
-            { items }
+        <nav class="row">
+            <div class="col-sm-12 navigation">
+                <div class="row">
+                    { items }
+                </div>
+            </div>
         </nav>
     }
 }

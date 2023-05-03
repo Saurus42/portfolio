@@ -5,7 +5,7 @@ use crate::router::Route;
 
 #[function_component]
 pub fn ItemMenu( props: &Props ) -> Html {
-    html!{ <Link<Route> classes="item-navigator" to={props.url_link.clone()}>{props.name_link.clone()}</Link<Route>> }
+    html!{ <Link<Route> classes="item-navigator col-sm text-center" to={props.url_link.clone()}>{props.name_link.clone()}</Link<Route>> }
 }
 
 #[derive(PartialEq, Properties)]
