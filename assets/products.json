@@ -1,0 +1,38 @@
+[
+  {
+    "name": "Skoki narciarskie 2020",
+    "link": "https://gameplanet.onet.pl/gry-online/sportowe/zimowe/skoki-narciarskie-2020/c19704m",
+    "imageUrl": "/assets/images/skoki-narciarskie.png",
+    "description": "Gra przeglądarkowa bazująca na silniku Phaser 3 na potrzeby Onet.pl"
+  },
+  {
+    "name": "Hamster and Hammer",
+    "link": "https://play.google.com/store/apps/details?id=pl.hamsterentertainment.hamsterandhammer",
+    "imageUrl": "/assets/images/hamster-and-hammer.png",
+    "description": "Własny projekt polegający na stworzeniu gry na telefon z systemem android wykorzystując Cordova i Phaser 3"
+  },
+  {
+    "name": "Praca dyplomowa",
+    "link": "https://github.com/Saurus42/One-of-Ten",
+    "imageUrl": "/assets/images/praca-dyplomowa.png",
+    "description": "Praca dyplomowa wzorująca się na teleturnieju 10 z dziesięciu. Wszystko napisane w JavaScript korzystając z Node.js oraz Electron."
+  },
+  {
+    "name": "Bot szachowy",
+    "link": "https://github.com/Saurus42/chessarbiter",
+    "imageUrl": "/assets/images/bot-szachowy.png",
+    "description": "Własny projekt polegający na stworzeniu bot szachowego na platformę discord."
+  },
+  {
+    "name": "Kalkulator do przelicznika walut",
+    "link": "https://github.com/Saurus42/bank-calculate",
+    "imageUrl": "/assets/images/bank-calculate.png",
+    "description": "Prosta witryna napisana na potrzeby sprawdzenia moich umiejętności szybkiego uczenia się."
+  },
+  {
+    "name": "Moduł ułatwiający obsługę ciasteczek",
+    "link": "https://github.com/Saurus42/cookie",
+    "imageUrl": "/assets/images/cookie.png",
+    "description": "Moduł skryptowy i binarny do obsługi ciasteczek po stronie klienta w wygodny sposób."
+  }
+]
