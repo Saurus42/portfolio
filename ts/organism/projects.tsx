@@ -33,7 +33,9 @@ class Projects extends React.Component<props, state> {
   }
 
   render() {
-    const JSONProducts = this.localData();
+    let JSONProducts = this.localData();
+    if( JSONProducts.length < this.state.products.length )
+      JSONProducts = this.state.products;
     const widgets = [];
     for( const product of JSONProducts )
       widgets.push( <Project key={`product-${Projects.indexProduct++}`} name={ product.name } link={ product.link } imageUrl={ product.imageUrl } description={ product.description } /> )
