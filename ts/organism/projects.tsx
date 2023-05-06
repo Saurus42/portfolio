@@ -24,9 +24,8 @@ class Projects extends React.Component<props, state> {
 
   localData(): product[] {
     let products = sessionStorage.getItem( 'products' );
-    if( products === null ) {
+    if( products === null )
       products = '[]';
-    }
     return JSON.parse( products );
   }
 
@@ -46,7 +45,7 @@ class Projects extends React.Component<props, state> {
 
   async componentDidMount() {
     if( this.state.products.length === 0 || sessionStorage.getItem( 'products' ) === null ) {
-      const products = await fetch( '/assets/products.json' ).then<product[]>( res => res.json() );
+      const products = await fetch( '/portfolio/assets/products.json' ).then<product[]>( res => res.json() );
       this.setState( { products } );
     }
   }

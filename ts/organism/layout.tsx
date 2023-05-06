@@ -8,7 +8,7 @@ interface props {}
 function Layout( props: props ) {
   const outlet = useOutlet()
   return (<div className="container-sm">
-    <Menu names={ [ "O mnie", "Moje projekty" ] } urls={ [ '/', '/projects' ] } />
+    <Menu names={ [ "O mnie", "Moje projekty" ] } urls={ [ '/portfolio/', '/portfolio/projects' ] } />
     { outlet }
     <Footer />
   </div>);

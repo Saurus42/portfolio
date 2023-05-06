@@ -40341,12 +40341,11 @@ __webpack_require__.r(__webpack_exports__);
 // @ts-ignore
 
 class MenuItem extends (react__WEBPACK_IMPORTED_MODULE_0___default().Component) {
-    static index = 0;
     constructor(props) {
         super(props);
     }
     render() {
-        return (react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.NavLink, { key: `item-navigator-${MenuItem.index++}`, className: "item-navigator col-sm text-center", to: this.props.urlLink }, this.props.nameLink));
+        return (react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.NavLink, { className: "item-navigator col-sm text-center", to: this.props.urlLink }, this.props.nameLink));
     }
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (MenuItem);
@@ -40435,6 +40434,7 @@ class Menu extends (react__WEBPACK_IMPORTED_MODULE_0___default().Component) {
     constructor(props) {
         super(props);
     }
+    static index = 0;
     render() {
         let names = [];
         let urls = [];
@@ -40446,7 +40446,7 @@ class Menu extends (react__WEBPACK_IMPORTED_MODULE_0___default().Component) {
         }
         let items = [];
         for (let i = 0; i < names.length; i++) {
-            items.push(react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_atom_menuItem__WEBPACK_IMPORTED_MODULE_1__["default"], { urlLink: urls[i], nameLink: names[i] }));
+            items.push(react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_atom_menuItem__WEBPACK_IMPORTED_MODULE_1__["default"], { key: `menu-${Menu.index++}`, urlLink: urls[i], nameLink: names[i] }));
         }
         return (react__WEBPACK_IMPORTED_MODULE_0___default().createElement("nav", { className: "row" },
             react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", { className: "col-sm-12 navigation" },
@@ -40534,7 +40534,7 @@ __webpack_require__.r(__webpack_exports__);
 function Layout(props) {
     const outlet = (0,_node_modules_react_router_dom_dist_index__WEBPACK_IMPORTED_MODULE_3__.useOutlet)();
     return (react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", { className: "container-sm" },
-        react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_molecule_menu__WEBPACK_IMPORTED_MODULE_1__["default"], { names: ["O mnie", "Moje projekty"], urls: ['/', '/projects'] }),
+        react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_molecule_menu__WEBPACK_IMPORTED_MODULE_1__["default"], { names: ["O mnie", "Moje projekty"], urls: ['/portfolio/', '/portfolio/projects'] }),
         outlet,
         react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_atom_footer__WEBPACK_IMPORTED_MODULE_2__["default"], null)));
 }
@@ -40569,9 +40569,8 @@ class Projects extends (react__WEBPACK_IMPORTED_MODULE_2___default().Component) 
     }
     localData() {
         let products = sessionStorage.getItem('products');
-        if (products === null) {
+        if (products === null)
             products = '[]';
-        }
         return JSON.parse(products);
     }
     render() {
@@ -40584,7 +40583,7 @@ class Projects extends (react__WEBPACK_IMPORTED_MODULE_2___default().Component) 
     }
     async componentDidMount() {
         if (this.state.products.length === 0 || sessionStorage.getItem('products') === null) {
-            const products = await fetch('/assets/products.json').then(res => res.json());
+            const products = await fetch('/portfolio/assets/products.json').then(res => res.json());
             this.setState({ products });
         }
     }

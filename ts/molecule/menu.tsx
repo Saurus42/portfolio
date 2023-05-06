@@ -12,6 +12,8 @@ class Menu extends React.Component<props, state> {
     super( props );
   }
 
+  static index = 0;
+
   render() {
     let names = [];
     let urls = [];
@@ -23,7 +25,7 @@ class Menu extends React.Component<props, state> {
     }
     let items = [];
     for( let i = 0; i < names.length; i++ ) {
-      items.push( <MenuItem urlLink={ urls[i] } nameLink={ names[i] } /> );
+      items.push( <MenuItem key={`menu-${Menu.index++}`} urlLink={ urls[i] } nameLink={ names[i] } /> );
     }
     return (
       <nav className="row">
