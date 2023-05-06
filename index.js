@@ -40561,6 +40561,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 class Projects extends (react__WEBPACK_IMPORTED_MODULE_2___default().Component) {
+    static indexProduct = 0;
     constructor(props) {
         super(props);
         this.state = {
@@ -40577,7 +40578,7 @@ class Projects extends (react__WEBPACK_IMPORTED_MODULE_2___default().Component) 
         const JSONProducts = this.localData();
         const widgets = [];
         for (const product of JSONProducts)
-            widgets.push(react__WEBPACK_IMPORTED_MODULE_2___default().createElement(_atom_project__WEBPACK_IMPORTED_MODULE_0__["default"], { name: product.name, link: product.link, imageUrl: product.imageUrl, description: product.description }));
+            widgets.push(react__WEBPACK_IMPORTED_MODULE_2___default().createElement(_atom_project__WEBPACK_IMPORTED_MODULE_0__["default"], { key: `product-${Projects.indexProduct++}`, name: product.name, link: product.link, imageUrl: product.imageUrl, description: product.description }));
         return (react__WEBPACK_IMPORTED_MODULE_2___default().createElement((react__WEBPACK_IMPORTED_MODULE_2___default().Fragment), null,
             react__WEBPACK_IMPORTED_MODULE_2___default().createElement(_atom_widget__WEBPACK_IMPORTED_MODULE_1__["default"], null, widgets)));
     }

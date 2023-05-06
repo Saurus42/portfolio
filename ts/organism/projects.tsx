@@ -15,6 +15,9 @@ interface state {
 }
 
 class Projects extends React.Component<props, state> {
+
+  static indexProduct = 0;
+
   constructor( props: props ) {
     super( props );
     this.state = {
@@ -33,7 +36,7 @@ class Projects extends React.Component<props, state> {
     const JSONProducts = this.localData();
     const widgets = [];
     for( const product of JSONProducts )
-      widgets.push( <Project name={ product.name } link={ product.link } imageUrl={ product.imageUrl } description={ product.description } /> )
+      widgets.push( <Project key={`product-${Projects.indexProduct++}`} name={ product.name } link={ product.link } imageUrl={ product.imageUrl } description={ product.description } /> )
     return (
       <>
         <Widget>
