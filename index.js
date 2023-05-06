@@ -40703,7 +40703,7 @@ window.addEventListener('load', function (event) {
     const root = (0,react_dom_client__WEBPACK_IMPORTED_MODULE_1__.createRoot)(container);
     root.render(react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_node_modules_react_router_dom_dist_index__WEBPACK_IMPORTED_MODULE_5__.BrowserRouter, null,
         react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_node_modules_react_router_dom_dist_index__WEBPACK_IMPORTED_MODULE_6__.Routes, null,
-            react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_node_modules_react_router_dom_dist_index__WEBPACK_IMPORTED_MODULE_6__.Route, { path: "/", element: react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_organism_layout__WEBPACK_IMPORTED_MODULE_3__["default"], null) },
+            react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_node_modules_react_router_dom_dist_index__WEBPACK_IMPORTED_MODULE_6__.Route, { path: "/portfolio/", element: react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_organism_layout__WEBPACK_IMPORTED_MODULE_3__["default"], null) },
                 react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_node_modules_react_router_dom_dist_index__WEBPACK_IMPORTED_MODULE_6__.Route, { index: true, element: react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_organism_home__WEBPACK_IMPORTED_MODULE_4__["default"], null) }),
                 react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_node_modules_react_router_dom_dist_index__WEBPACK_IMPORTED_MODULE_6__.Route, { path: "projects", element: react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_organism_projects__WEBPACK_IMPORTED_MODULE_2__["default"], null) })))));
     this.document.body.appendChild(container);

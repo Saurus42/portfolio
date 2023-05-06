@@ -11,7 +11,7 @@ window.addEventListener( 'load', function( event ) {
   root.render(
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={ <Layout /> }>
+        <Route path="/portfolio/" element={ <Layout /> }>
           <Route index element={ <Home /> } />
           <Route path="projects" element={ <Projects /> } />
         </Route>
