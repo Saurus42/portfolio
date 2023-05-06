@@ -34,8 +34,7 @@ class Home extends React.Component<props, state> {
               <li>Podstawy Java</li>
             </ul>
             <p>Zajmuję się frontend-em jak i backend-em.</p>
-            <p>Wszystkie moje projekty są do wglądu w <a href="https://github.com/Saurus42">moim repozytorium</a> oraz w zakładce <Link to="/projects">Moje projekty</Link>.
-            </p>
+            <p>Wszystkie moje projekty są do wglądu w <a href="https://github.com/Saurus42">moim repozytorium</a> oraz w zakładce <Link to="/portfolio/projects">Moje projekty</Link>.</p>
           </div>
         </div>
       </>
